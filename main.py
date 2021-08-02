@@ -1,18 +1,22 @@
 import cv2
 import mediapipe as mp
+from HandDetectorModule.tracker import HandDetector
 import time
 
 cap = cv2.VideoCapture(0)
-
 cv2.namedWindow("Rock Paper Scissors", cv2.WINDOW_KEEPRATIO)
 
 pTime = time.time()
+
+detector = HandDetector()
 
 while True:
     _, img = cap.read()
 
     if _ is not None:
         img = cv2.flip(img, 1)
+
+        img = detector.findHands(img)
 
         cTime = time.time()
         fps = 1/(cTime - pTime)
