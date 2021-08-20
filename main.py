@@ -27,11 +27,18 @@ while True:
 
         if len(lmList) > 0:
             
-            
+            fingers = []
+
             # if the index finger tip y coordinate is lower 
             # than the lower part, its "closed"
-            if lmList[8][1] > lmList[6][1]:
-                print("INDEX FINGER CLOSED")
+            for id in range(0,5):
+                if lmList[TIP_IDS[id]][1] < lmList[TIP_IDS[id] - 2][1]:
+                    fingers.append(1)
+                else:
+                    fingers.append(0)
+                
+            print(fingers)
+
 
         cTime = time.time()
         fps = 1/(cTime - pTime)
