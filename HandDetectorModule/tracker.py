@@ -36,7 +36,7 @@ class HandDetector():
         
         return img
     
-    def findPosition(self, img, handNo = 0, landmarks = [0]):
+    def findPosition(self, img, handNo = 0, draw = False):
         """
         Detects the position of the desired landmarks on the hands
         and draw on the image
@@ -48,7 +48,8 @@ class HandDetector():
             for idx, lm in enumerate(myHand.landmark):
                         h,w,_ = img.shape
                         cx, cy = int(lm.x * w), int(lm.y * h)
-                        if idx in landmarks:
-                            lmList.append((cx, cy))
+                        lmList.append((cx, cy))
+                        
+                        if draw:
                             cv2.circle(img, (cx, cy), 15, (108, 110, 35), cv2.FILLED)
         return lmList
