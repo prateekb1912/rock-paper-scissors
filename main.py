@@ -4,7 +4,7 @@ from HandDetectorModule.tracker import HandDetector
 import time
 
 cap = cv2.VideoCapture(0)
-cv2.namedWindow("Rock Paper Scissors", cv2.WINDOW_KEEPRATIO)
+cv2.namedWindow("Rock Paper Scissors")
 
 pTime = time.time()
 
@@ -17,6 +17,15 @@ while True:
         img = cv2.flip(img, 1)
 
         img = detector.findHands(img)
+
+        # Get all landmarks from the detected hand
+        lmList = detector.findPosition(img)
+        print(lmList)
+
+        if len(lmList) > 0:
+            
+            # if lmList[8][2] < lmList[6][2]:
+            print("INDEX FINGER CLOSED")
 
         cTime = time.time()
         fps = 1/(cTime - pTime)
