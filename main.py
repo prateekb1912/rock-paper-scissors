@@ -10,6 +10,10 @@ pTime = time.time()
 
 detector = HandDetector()
 
+# The indices for the tips of the fingers on hand
+TIP_IDS = [4, 8, 12, 16, 20]
+
+
 while True:
     _, img = cap.read()
 
@@ -20,12 +24,14 @@ while True:
 
         # Get all landmarks from the detected hand
         lmList = detector.findPosition(img)
-        print(lmList)
 
         if len(lmList) > 0:
             
-            # if lmList[8][2] < lmList[6][2]:
-            print("INDEX FINGER CLOSED")
+            
+            # if the index finger tip y coordinate is lower 
+            # than the lower part, its "closed"
+            if lmList[8][1] > lmList[6][1]:
+                print("INDEX FINGER CLOSED")
 
         cTime = time.time()
         fps = 1/(cTime - pTime)
