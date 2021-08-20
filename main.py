@@ -29,14 +29,21 @@ while True:
             
             fingers = []
 
-            # if the index finger tip y coordinate is lower 
+            # For the thumb, we will use a different logic,
+            # we will check if the tip is left or right of the lower part
+            if lmList[TIP_IDS[4]][0] < lmList[3][0]:
+                fingers.append(1)
+            else:
+                fingers.append(0)
+
+            # if the finger tips' y coordinate is lower 
             # than the lower part, its "closed"
-            for id in range(0,5):
+            for id in range(1,5):
                 if lmList[TIP_IDS[id]][1] < lmList[TIP_IDS[id] - 2][1]:
                     fingers.append(1)
                 else:
                     fingers.append(0)
-                
+
             print(fingers)
 
 
