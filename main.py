@@ -43,9 +43,12 @@ while True:
                     fingers.append(1)
                 else:
                     fingers.append(0)
+            
+            tot_fing = 0
+            for f in fingers:
+                tot_fing += f
 
-            print(fingers)
-
+            cv2.putText(img, f"Fingers: {int(tot_fing)}", (20, 200), cv2.FONT_HERSHEY_PLAIN, 2, (0, 255, 0), 2)
 
         cTime = time.time()
         fps = 1/(cTime - pTime)
